@@ -6,9 +6,9 @@ exports.getAllData = (req, res) => {
     DataModel.getAllData( (err, tabel_bankReqData) =>{
         console.log('Here is the data');
         if(err)
-        res.send(err);
+        res.send({success: false, message: "err"});
         console.log('All data', tabel_bankReqData);
-        res.send(tabel_bankReqData)
+        res.send({success: true, data: tabel_bankReqData})
     })
 }
 
@@ -17,9 +17,9 @@ exports.getDataByID = (req, res) =>{
     //console.log("Get data by ID");
     DataModel.getDataByID(req.params.id, (err, tabel_bankReqData)=>{
         if(err)
-        res.send(err);
+        res.send({success: false, message: "err"});
         console.log('Single data', tabel_bankReqData);
-        res.send(tabel_bankReqData);
+        res.send({success: true, data: tabel_bankReqData})
     })
 }
 
@@ -44,7 +44,7 @@ exports.createNewData = (req, res) =>{
 exports.deleteData = (req, res) =>{
     DataModel.deleteData(req.params.id, (err, tabel_bank)=>{
         if(err)
-        res.send(err);
+        res.send({success: false, message: "err"});
         res.json({success: true, message: "Data deleted successfully"});
     })
 }
